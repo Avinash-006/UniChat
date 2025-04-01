@@ -1,178 +1,222 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+/* ===========================
+   1. GENERAL RESET AND BASE STYLES
+   =========================== */
 
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background: #0a0a0a;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.auth-card {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 400px;
-  animation: fadeIn 0.5s ease-out;
-  position: relative;
-  transition: all 0.5s ease;
-}
-
-.auth-card.login {
-  transform: translateX(0);
-}
-
-.auth-card.register {
-  transform: translateX(0);
-}
-
-.logo {
-  color: #00ffcc;
-  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.form-container {
-  margin-bottom: 1.5rem;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.auth-form h3 {
-  color: #00ffcc;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.input-group {
-  position: relative;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  color: #ffffff;
-  font-family: 'JetBrains Mono', monospace;
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: #00ffcc;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-}
-
-.submit-btn {
-  background: linear-gradient(45deg, #00ffcc, #00ccff);
-  padding: 0.8rem;
-  border: none;
-  border-radius: 20px;
-  color: #0a0a0a;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-}
-
-.submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.toggle-btn {
-  background: none;
-  border: none;
-  color: #00ffcc;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-  padding: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.toggle-btn:hover {
-  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-}
-
-.message {
-  text-align: center;
-  color: #ff4d4f;
-  margin-top: 1rem;
-  text-shadow: 0 0 5px rgba(255, 77, 79, 0.5);
-}
-
-.loader {
-  width: 20px;
-  height: 20px;
-  border: 3px solid #0a0a0a;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto;
-}
-
-.suggestions {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 0.8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.suggestions p {
-  color: #00ffcc;
-  font-size: 0.9rem;
-  margin: 0 0 0.5rem 0;
-  text-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
-}
-
-.suggestions ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.suggestions li {
-  padding: 0.5rem;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.suggestions li:hover {
-  background: rgba(0, 255, 204, 0.2);
-  color: #00ffcc;
-  text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
-  transform: translateX(5px);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF3E0; /* Soft peach background */
+    color: #3E2723; /* Dark brown text for readability */
+    line-height: 1.6;
+  }
+  
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-family: inherit;
+  }
+  
+  input,
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  /* ===========================
+     2. AUTH PAGE CONTAINER
+     =========================== */
+  
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #FFF3E0; /* Soft peach background */
+  }
+  
+  .auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff; /* White card background */
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .auth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* ===========================
+     3. LOGO AND HEADINGS
+     =========================== */
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFA726; /* Warm orange for branding */
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-form h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3E2723; /* Dark brown for headings */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* ===========================
+     4. INPUT GROUPS AND FORM ELEMENTS
+     =========================== */
+  
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #FFE0B2; /* Light peach border */
+    border-radius: 0.5rem;
+    background-color: #FFF3E0; /* Soft peach background */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    border-color: #FFA726; /* Warm orange focus border */
+    box-shadow: 0 0 4px rgba(255, 167, 38, 0.25);
+  }
+  
+  .suggestions {
+    margin-top: 0.5rem;
+    text-align: left;
+  }
+  
+  .suggestions p {
+    font-size: 0.875rem;
+    color: #555555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .suggestions ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .suggestions li {
+    padding: 0.5rem 1rem;
+    background-color: #FFF3E0; /* Soft peach background */
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .suggestions li:hover {
+    background-color: #FFE0B2; /* Light peach hover effect */
+  }
+  
+  /* ===========================
+     5. BUTTONS
+     =========================== */
+  
+  .submit-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff; /* White text */
+    background-color: #FFA726; /* Warm orange background */
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #FB8C00; /* Darker orange hover effect */
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn:disabled {
+    background-color: #cccccc; /* Grayed-out disabled state */
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .loader {
+    border: 2px solid #ffffff;
+    border-top: 2px solid #cccccc;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .toggle-btn {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #FFA726; /* Warm orange text */
+    background: none;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-btn:hover {
+    color: #FB8C00; /* Darker orange hover effect */
+  }
+  
+  /* ===========================
+     6. MESSAGE AND ERROR HANDLING
+     =========================== */
+  
+  .message {
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    color: #d32f2f; /* Red for errors */
+  }
+  
+  /* ===========================
+     7. RESPONSIVE DESIGN
+     =========================== */
+  
+  @media (max-width: 768px) {
+    .auth-card {
+      padding: 1.5rem;
+    }
+  
+    .logo {
+      font-size: 1.75rem;
+    }
+  
+    .auth-form h3 {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .auth-card {
+      padding: 1rem;
+    }
+  
+    .submit-btn {
+      font-size: 0.9rem;
+    }
+  }
